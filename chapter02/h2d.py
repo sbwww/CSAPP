@@ -1,4 +1,4 @@
 
-s = raw_input('Enter the hex string:')
+s = input('Enter the hex string:')
 i = int(s, 16)
-print i
+print(i)

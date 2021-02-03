@@ -1,25 +1,25 @@
 #include <stdio.h>
 
 // FAKE bis and bic
-int bic(int x, int m){
+int bic(int x, int m) {
     int mask = ~m;
-    return x & mask;
+    return x & mask; // x&~m
 }
 
-int bis(int x, int m){
-    return x | m; // bit=1 in m should be set to 1 otherwise no change , so OR
-}
-//-----------------------------
-//
-int bool_or(int x, int y){
-    return bis(x, y);
+int bis(int x, int m) {
+    return x | m; // x|m
 }
 
-int bool_xor(int x, int y){
-    return bis(bic(x,y), bic(y,x));
+int bool_or(int x, int y) {
+    return bis(x, y); // y 为 1 的地方设为 1
 }
 
-int main(){
+int bool_xor(int x, int y) {
+    // a^b = (~a&b) | (a&~b)
+    return bis(bic(x, y), bic(y, x));
+}
+
+int main() {
     printf("%d\n", bis(5, 4));
     return 0;
 }
